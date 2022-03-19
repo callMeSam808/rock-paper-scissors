@@ -26,26 +26,49 @@
         let computer = computerSelection.toUpperCase();
 
         if (player === "ROCK" && computer === "SCISSORS") {
-          return "You win! Rock beats scissors!";
+          return "You win! Rock beats Scissors!";
         } else if (player === "ROCK" && computer === "PAPER") {
-          return "You lose! Paper beats rock!";
+          return "You lose! Paper beats Rock!";
         } else if (player === "PAPER" && computer === "ROCK") {
-          return "You win! Paper beats rock!";
+          return "You win! Paper beats Rock!";
         } else if (player === "PAPER" && computer === "SCISSORS") {
-          return "You lose! Scissors beats paper!";
+          return "You lose! Scissors beats Paper!";
         } else if (player === "SCISSORS" && computer === "PAPER") {
-          return "You win! Scissors beats paper!";
+          return "You win! Scissors beats Paper!";
         } else if (player === "SCISSORS" && computer === "ROCK") {
-          return "You lose! Rock beats scissors!";
+          return "You lose! Rock beats Scissors!";
         } else {
+          player = player[0] + player.slice(1).toLowerCase();
+          computer = computer[0] + computer.slice(1).toLowerCase();
           return `Tie! ${player} vs ${computer}`;
         }
       }
 
-      const playerSelection = prompt('Choose "rock", "paper", or "scissors":');
-      const computerSelection = computerPlay();
+      function inputCheck(playerSelection) {
+        let player = playerSelection.toUpperCase();
+        while (player !== 'ROCK' || 
+          player !== 'PAPER' || 
+          player !== 'SCISSORS') {
 
-      console.log(gameRound(playerSelection, computerSelection));
+          player = prompt('Invalid choice. Please type one of the following: '
+          + 'Rock  Paper  Scissors');
+          player = player.toUpperCase();
+          continue;
+        }
+        return player;
+      }
+
+      function game() {
+        for (let i = 0; i < 5; i++) {
+          const playerSelection = prompt('Choose Rock, Paper, or '
+          + 'Scissors:');
+          playerSelection = inputCheck(playerSelection)
+          const computerSelection = computerPlay();
+          console.log(gameRound(playerSelection, computerSelection));
+        }
+      }
+
+      game();
       
     </script>
   </body>
