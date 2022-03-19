@@ -46,10 +46,14 @@
 
       function inputCheck(playerSelection) {
         let player = playerSelection.toUpperCase();
-        while (player !== 'ROCK' || 
-          player !== 'PAPER' || 
-          player !== 'SCISSORS') {
-
+        let check = true;
+        while (check) {
+          if (player === 'ROCK' || 
+          player === 'PAPER' || 
+          player === 'SCISSORS') {
+          check = false;
+          break;
+          }
           player = prompt('Invalid choice. Please type one of the following: '
           + 'Rock  Paper  Scissors');
           player = player.toUpperCase();
@@ -60,9 +64,9 @@
 
       function game() {
         for (let i = 0; i < 5; i++) {
-          const playerSelection = prompt('Choose Rock, Paper, or '
+          let playerSelection = prompt('Choose Rock, Paper, or '
           + 'Scissors:');
-          playerSelection = inputCheck(playerSelection)
+          playerSelection = inputCheck(playerSelection);
           const computerSelection = computerPlay();
           console.log(gameRound(playerSelection, computerSelection));
         }
