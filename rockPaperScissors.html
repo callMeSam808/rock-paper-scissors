@@ -11,10 +11,9 @@
     <br>
     <br>
     <div id="results"></div>
-    <br>
     <p>Current Score</p>
-    <p id="playerScore">Player: 0</p>
-    <p id="compScore">Computer: 0</p>
+    <p>Player: <span id="playerScore">0</span></p>
+    <p>Computer: <span id="compScore">0</span></p>
     <p>First to 5 wins!</p>
 
     <script>
@@ -63,22 +62,51 @@
         let computer = computerSelection.toUpperCase();
 
         if (player === "ROCK" && computer === "SCISSORS") {
-
-          return "You win! Rock beats Scissors!";
+          addPlayerPoint();
+          return "Player point! Rock beats Scissors!";
         } else if (player === "ROCK" && computer === "PAPER") {
-          return "You lose! Paper beats Rock!";
+          addCompPoint();
+          return "Computer point! Paper beats Rock!";
         } else if (player === "PAPER" && computer === "ROCK") {
-          return "You win! Paper beats Rock!";
+          addPlayerPoint();
+          return "Player point! Paper beats Rock!";
         } else if (player === "PAPER" && computer === "SCISSORS") {
-          return "You lose! Scissors beats Paper!";
+          addCompPoint();
+          return "Computer point! Scissors beats Paper!";
         } else if (player === "SCISSORS" && computer === "PAPER") {
-          return "You win! Scissors beats Paper!";
+          addPlayerPoint();
+          return "Player point! Scissors beats Paper!";
         } else if (player === "SCISSORS" && computer === "ROCK") {
-          return "You lose! Rock beats Scissors!";
+          addCompPoint();
+          return "Computer point! Rock beats Scissors!";
         } else {
           player = player[0] + player.slice(1).toLowerCase();
           computer = computer[0] + computer.slice(1).toLowerCase();
           return `Tie! ${player} vs ${computer}`;
+        }
+      }
+
+      function addPlayerPoint() {
+        const points = document.querySelector("#playerScore");
+        let number = points.innerHTML;
+        number++;
+        points.innerHTML = number;
+        scoreCheck();
+      }
+
+      function addCompPoint() {
+        const points = document.querySelector("#compScore");
+        let number = points.innerHTML;
+        number++;
+        points.innerHTML = number;
+        scoreCheck();
+      }
+
+      function scoreCheck() {
+        const pPoints = document.querySelector("#playerScore").innerHTML;
+        const cPoints = document.querySelector('#compScore').innerHTML;
+        if (pPoints === 5) {
+          
         }
       }
       
