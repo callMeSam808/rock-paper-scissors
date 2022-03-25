@@ -14,7 +14,7 @@
     <p>Current Score</p>
     <p>Player: <span id="playerScore">0</span></p>
     <p>Computer: <span id="compScore">0</span></p>
-    <p>First to 5 wins!</p>
+    <p>First to 5 wins! <span id="gameOver"></span></p>
 
     <script>
 
@@ -103,13 +103,20 @@
       }
 
       function scoreCheck() {
-        const pPoints = document.querySelector("#playerScore").innerHTML;
-        const cPoints = document.querySelector('#compScore').innerHTML;
-        if (pPoints === 5) {
-          
+        let pPoints = document.querySelector("#playerScore").innerHTML;
+        let cPoints = document.querySelector('#compScore').innerHTML;
+        console.log(pPoints);
+        console.log(cPoints);
+        if (pPoints === '5') {
+          let winMessage = document.querySelector("#gameOver");
+          winMessage.innerHTML = "You win!";
+        }
+        if (cPoints === '5') {
+          let loseMessage = document.querySelector("#gameOver");
+          loseMessage.innerHTML = "You lose!";
         }
       }
-      
+
     </script>
   </body>
 </html>
