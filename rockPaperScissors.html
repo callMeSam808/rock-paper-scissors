@@ -5,6 +5,18 @@
     <title>Rock Paper Scissors</title>
   </head>
   <body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <br>
+    <br>
+    <div id="results"></div>
+    <br>
+    <p>Current Score</p>
+    <p id="playerScore">Player: 0</p>
+    <p id="compScore">Computer: 0</p>
+    <p>First to 5 wins!</p>
+
     <script>
 
       function computerPlay() {
@@ -21,11 +33,37 @@
         }
       }
 
+      const rock = document.querySelector('#rock');
+      rock.addEventListener('click', () => {
+        const computerSelection = computerPlay();
+        const playerSelection = "Rock";
+        const div = document.querySelector('#results');
+        div.innerText = gameRound(playerSelection, computerSelection);
+      });
+
+      const paper = document.querySelector('#paper');
+      paper.addEventListener('click', () => {
+        const computerSelection = computerPlay();
+        const playerSelection = "Paper";
+        const div = document.querySelector('#results');
+        div.innerText = gameRound(playerSelection, computerSelection);
+      });
+
+      const scissors = document.querySelector('#scissors');
+      scissors.addEventListener('click', () => {
+        const computerSelection = computerPlay();
+        const playerSelection = "Scissors";
+        const div = document.querySelector('#results');
+        div.innerText = gameRound(playerSelection, computerSelection);
+      });
+
+
       function gameRound(playerSelection, computerSelection) {
         let player = playerSelection.toUpperCase();
         let computer = computerSelection.toUpperCase();
 
         if (player === "ROCK" && computer === "SCISSORS") {
+
           return "You win! Rock beats Scissors!";
         } else if (player === "ROCK" && computer === "PAPER") {
           return "You lose! Paper beats Rock!";
@@ -43,36 +81,6 @@
           return `Tie! ${player} vs ${computer}`;
         }
       }
-
-      function inputCheck(playerSelection) {
-        let player = playerSelection.toUpperCase();
-        let check = true;
-        while (check) {
-          if (player === 'ROCK' || 
-          player === 'PAPER' || 
-          player === 'SCISSORS') {
-          check = false;
-          break;
-          }
-          player = prompt('Invalid choice. Please type one of the following: '
-          + 'Rock  Paper  Scissors');
-          player = player.toUpperCase();
-          continue;
-        }
-        return player;
-      }
-
-      function game() {
-        for (let i = 0; i < 5; i++) {
-          let playerSelection = prompt('Choose Rock, Paper, or '
-          + 'Scissors:');
-          playerSelection = inputCheck(playerSelection);
-          const computerSelection = computerPlay();
-          console.log(gameRound(playerSelection, computerSelection));
-        }
-      }
-
-      game();
       
     </script>
   </body>
